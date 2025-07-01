@@ -27,7 +27,22 @@ const userSchema = new mongoose.Schema({
     enum: ['renter', 'owner', 'admin'],
     default: 'renter',
     required: true
-  }
+    },
+    email: {
+  type: String,
+  required: true,
+  unique: true,
+  trim: true,
+  lowercase: true,
+  match: [/^\S+@\S+\.\S+$/, 'Please enter a valid email address']
+},
+phone: {
+  type: String,
+  trim: true,
+  match: [/^\+?[1-9]\d{1,14}$/, 'Please enter a valid phone number']
+}
+
+  
 }, {
   timestamps: true
 });
