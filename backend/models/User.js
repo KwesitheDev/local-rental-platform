@@ -13,6 +13,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true
+  },
   middleName: {
     type: String,
     default: '',
