@@ -13,6 +13,8 @@ const listingSchema = new mongoose.Schema({
     owner: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     status: { type: String, enum: ['available', 'booked', 'unlisted'], default: 'available' }
 
+},{
+    timestamps: true
 })
 
 listingSchema.set('toJSON', {
