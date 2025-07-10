@@ -39,6 +39,30 @@ const login = async (req, res) => {
     }
 }
 
+//Register
+
+const register = async (req, res) => {
+    const { name, email, password, role } = req.body
+
+    const saltRounds = 10
+    const passwordHash = await bcrypt.hash(password, saltRounds)
+    
+    try {
+        const user = new User({
+            name,
+            email,
+            passwordHash,
+            role
+        })
+        const savedUser = await user.save()
+        res.status(201).json(savedUser)
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'registration failed' })
+    }
+    
+}
+
 export default {
-    login
+    login, register
 }
