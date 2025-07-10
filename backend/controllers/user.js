@@ -1,44 +1,58 @@
-const usersRouter = require('express').Router()
 const User = require('../models/User')
-const bcrypt = require('bcrypt')
-const User = require('../models/user');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const config = require('../utils/config');
 
-
-usersRouter.post('/register', async (req, res) => {
-    const { name, email, password, role } = req.body
-
-    //check for email and password not missing
-    if (!email || !password) {
-        return res
-                .status(400)
-                .json({ error: 'email and password are required' })
-
+// Get current user's profile
+const getProfile = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id)
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' })
     }
+    res.json(user)
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch profile' })
+  }
+}
 
-    //Check for length of useremail & password
-    if (email.length < 3 || password.length < 3) {
-        return res.status(400).json({ error: 'email and password must be at least 3 characters long' })
+//search user
+const getUser = async (req, res) => {
+  try {
+    const name = req.params.name
+    const user = await User.findOne({ name })
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' })
     }
+    res.json(user)
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch profile' })
+  }
+}
 
-    //Check for unique email
-    const existingUser = await User.findOne({ email })
-    if (existingUser) {
-        return res.status(400).json({ error: 'email must be unique' })
-    }
+// Update profile
+const updateProfile = async (req, res) => {
+  try {
+    const { name, email } = req.body
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      { name, email },
+      { new: true, runValidators: true }
+    )
+    res.json(updatedUser)
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to update profile' })
+  }
+}
 
-    const saltRounds = 10
-    const passwordHash = await bcrypt.hash(password, saltRounds)
+// Delete account
+const deleteUser = async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.user.id)
+    res.status(204).end()
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to delete user' })
+  }
+}
 
-    const user = new User({
-        name,
-        passwordHash,
-        email,
-        role
-    })
+module.exports = { getProfile, updateProfile, deleteUser }
 
-    const savedUser = await user.save()
-    res.status(201).json(savedUser)
-})
+
+
