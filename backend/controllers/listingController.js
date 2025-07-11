@@ -37,4 +37,20 @@ const getListing = async (req, res) => {
 }
 
 //Update a listing
+
+const updateListing = async (req, res) => {
+    try {
+        const updatedListing = await Listing.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        if (!updatedListing) {
+            return res.status(404).json({ error: 'Listing not found' })
+        }
+        res.json(updatedListing)
+    } catch (error) {
+        if (error.name === 'ValidationError') {
+            res.status(400).json({ error: 'Validation error' })
+        } else {
+            res.status(500).json({ error: 'Failed to update listing' })
+        }
+    }
+}
 //Delete a listing
