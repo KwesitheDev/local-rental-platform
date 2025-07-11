@@ -12,10 +12,11 @@ const createListing = async (req, res) => {
     }
 }
 
-//Get all listing (with optional filters-maybe)
+//Get all listing (with optional filters )
 const getAllListings = async (req, res) => {
     try {
-        const listings = await Listing.find()
+        const filters = req.query || {}
+        const listings = await Listing.find(filters).populate('owner location category')
         res.json(listings)
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch listings' })
