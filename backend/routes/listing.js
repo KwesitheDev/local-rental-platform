@@ -7,10 +7,10 @@ const { deleteListing,
 const {requireAuth} = require("../middleware/auth")
 
 
-router.get("/", getAllListings);
-router.get("/:id", getListing);
-router.post("/", requireAuth, createListing);
-router.put("/:id", requireAuth, updateListing);
-router.delete("/:id", requireAuth, deleteListing);
+listingRouter.get("/", getAllListings);
+listingRouter.get("/:id", getListing);
+listingRouter.post("/", requireAuth, createListing);
+listingRouter.put("/:id", requireAuth, updateListing);
+listingRouter.delete("/:id", requireAuth, deleteListing);
 
-module.exports = router;
+module.exports = listingRouter;
