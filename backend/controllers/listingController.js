@@ -53,4 +53,17 @@ const updateListing = async (req, res) => {
         }
     }
 }
+
 //Delete a listing
+const deleteListing = async (req, res) => {
+    try {
+        const deletedListing = await Listing.findByIdAndDelete(req.params.id)
+        if (!deletedListing) {
+            return res.status(404).json({error: 'Listing not found'})
+            
+        }
+        res.json({message: 'Listing deleted successfully'})
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete listing'})
+    }
+}
