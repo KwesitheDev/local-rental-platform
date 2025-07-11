@@ -24,5 +24,17 @@ const getAllListings = async (req, res) => {
 }
 
 //get a single listing
+const getListing = async (req, res) => {
+    try {
+        const listing = await Listing.findById(req.params.id).populate('owner location category')
+        if (!listing) {
+            return res.status(404).json({ error: 'Listing not found' })
+        }
+        res.json(listing)
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch listing' })
+    }
+}
+
 //Update a listing
 //Delete a listing
