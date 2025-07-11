@@ -67,3 +67,11 @@ const deleteListing = async (req, res) => {
         res.status(500).json({ error: 'Failed to delete listing'})
     }
 }
+
+module.exports={
+    deleteListing,
+    updateListing,
+    getListing,
+    getAllListings,
+    createListing
+}
