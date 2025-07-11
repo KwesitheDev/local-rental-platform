@@ -13,6 +13,15 @@ const createListing = async (req, res) => {
 }
 
 //Get all listing (with optional filters-maybe)
+const getAllListings = async (req, res) => {
+    try {
+        const listings = await Listing.find()
+        res.json(listings)
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch listings' })
+    }
+}
+
 //get a single listing
 //Update a listing
 //Delete a listing
