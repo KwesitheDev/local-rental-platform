@@ -1,0 +1,23 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend to Rental platform",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KwesitheDev/local-rental-platform.git"
+  },
+  "author": "KwesitheDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KwesitheDev/local-rental-platform/issues"
+  },
+  "homepage": "https://github.com/KwesitheDev/local-rental-platform#readme",
+  "devDependencies": {
+    "jest": "^30.0.4",
+    "supertest": "^7.1.3"
+  }
+}
