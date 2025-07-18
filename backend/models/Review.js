@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from ('mongoose');
 
 const reviewSchema = new mongoose.Schema({
     listing: { type: mongoose.Schema.Types.ObjectId, ref: 'Listing', required: true },
@@ -16,4 +16,4 @@ reviewSchema.set('toJSON', {
     }
   });
   
-  module.exports = mongoose.model('Review', reviewSchema);
+export default mongoose.model('Review', reviewSchema);
