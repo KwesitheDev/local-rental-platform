@@ -1,4 +1,4 @@
-import logger from ("./logger");
+import logger from "./logger";
 
 const requestLogger = (req, res, next) => {
   logger.info("Method: ", req.method);

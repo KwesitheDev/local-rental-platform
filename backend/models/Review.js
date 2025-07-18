@@ -1,4 +1,4 @@
-import mongoose from ('mongoose');
+import mongoose from 'mongoose';
 
 const reviewSchema = new mongoose.Schema({
     listing: { type: mongoose.Schema.Types.ObjectId, ref: 'Listing', required: true },
