@@ -52,7 +52,7 @@ const deleteUser = async (req, res) => {
   }
 }
 
-export default { getProfile, updateProfile, deleteUser , getUser}
+export  { getProfile, updateProfile, deleteUser , getUser}
 
 
 

@@ -62,6 +62,6 @@ const register = async (req, res) => {
     }
     
 }
-export default {
+export  {
     login, register
 }

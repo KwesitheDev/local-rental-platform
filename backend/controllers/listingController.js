@@ -67,7 +67,7 @@ const deleteListing = async (req, res) => {
     }
 }
 
-export default  {
+export  {
     deleteListing,
     updateListing,
     getListing,

@@ -85,7 +85,7 @@ const updateBookingStatus = async (req,res) =>{
     }
 }
 
-export default {
+export {
     getBookingById,
     createBooking,
     getUserBookings,
