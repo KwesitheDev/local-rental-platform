@@ -1,6 +1,6 @@
-import express from ('express')
-import { getUser, getProfile, updateProfile, deleteUser } from "../controllers/user"
-import { requireAuth } from "../middleware/auth"
+import express from 'express'
+import { getUser, getProfile, updateProfile, deleteUser } from "../controllers/user.js"
+import { requireAuth } from "../middleware/auth.js"
 const userRouter = express.Router()
 
 userRouter.get('/user/:name', getUser)
