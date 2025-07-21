@@ -1,5 +1,5 @@
-import Booking from '../models/Booking'
-import Listing from '../models/Listing'
+import Booking from '../models/Booking.js'
+import Listing from '../models/Listing.js'
 
 const createBooking = async (req, res) => {
     try {
